@@ -18,6 +18,8 @@ It is an interface used to provide lifecycle objects, related to specific type o
 * `Validator<T> getValidator()` - returns [Validator](#validator) instance
 * `Handler<T> getHandler()` - returns [Handler](#handler) instance
 
+Simple example can be found [here](https://github.com/alex-derkach/ski_pass/blob/master/client/src/main/java/io/ski/cards/Season2015CardDefinition.java).
+
 #### Validator
 Instances of this [type](https://github.com/alex-derkach/ski_pass/blob/master/core/src/main/java/io/ski/card/Validator.java), created in [CardDefinition](#carddefinition), are used by system to validate cards before handling, during pass (e.g. used for checking block status). Core implementors are:
 * [BlockedValidator](https://github.com/alex-derkach/ski_pass/blob/master/core/src/main/java/io/ski/card/validator/BlockedValidator.java) - checks blockage status of card
