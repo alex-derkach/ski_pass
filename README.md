@@ -1,4 +1,4 @@
-## JavaDay Kyiv student programming contest
+## Proposed solution for JavaDay Kyiv student programming contest
 [Task description](http://jug.ua/materials/javaday-kyiv-student-programming-contest/)
 
 To run on Unix, execute in terminal:
