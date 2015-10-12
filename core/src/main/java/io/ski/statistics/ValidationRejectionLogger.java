@@ -18,7 +18,8 @@ public class ValidationRejectionLogger implements PostValidationListener {
 
   @Override
   public void postValidation(Card card, BindingResult bindingResult) {
-    if (!bindingResult.hasErrors()) return;
+    if (!bindingResult.hasErrors())
+      return;
 
     LocalDateTime now = LocalDateTime.now();
     UnauthorizedPassEvent event = new UnauthorizedPassEvent(bindingResult.getErrors(), now, card);

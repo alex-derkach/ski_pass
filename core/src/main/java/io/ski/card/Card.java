@@ -34,8 +34,10 @@ public abstract class Card {
 
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof Card)) return false;
+    if (this == o)
+      return true;
+    if (!(o instanceof Card))
+      return false;
     Card card = (Card) o;
     return Objects.equals(isBlocked(), card.isBlocked()) &&
         Objects.equals(getId(), card.getId()) &&

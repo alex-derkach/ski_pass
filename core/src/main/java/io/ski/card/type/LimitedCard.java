@@ -22,9 +22,12 @@ public class LimitedCard extends Card {
 
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof LimitedCard)) return false;
-    if (!super.equals(o)) return false;
+    if (this == o)
+      return true;
+    if (!(o instanceof LimitedCard))
+      return false;
+    if (!super.equals(o))
+      return false;
     LimitedCard that = (LimitedCard) o;
     return Objects.equals(getCounter(), that.getCounter());
   }

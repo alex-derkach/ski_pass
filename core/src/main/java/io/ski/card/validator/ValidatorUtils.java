@@ -7,7 +7,8 @@ import java.time.LocalDate;
 
 public class ValidatorUtils {
 
-  private ValidatorUtils() {}
+  private ValidatorUtils() {
+  }
 
   public static boolean isNotWorkingDay(HolidayResolver holidayResolver, LocalDate localDate) {
     DayOfWeek dayOfWeek = localDate.getDayOfWeek();

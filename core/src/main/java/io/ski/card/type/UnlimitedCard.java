@@ -31,9 +31,12 @@ public class UnlimitedCard extends Card {
 
   @Override
   public boolean equals(Object o) {
-    if (this == o) return true;
-    if (!(o instanceof UnlimitedCard)) return false;
-    if (!super.equals(o)) return false;
+    if (this == o)
+      return true;
+    if (!(o instanceof UnlimitedCard))
+      return false;
+    if (!super.equals(o))
+      return false;
     UnlimitedCard that = (UnlimitedCard) o;
     return Objects.equals(getStartPoint(), that.getStartPoint()) &&
         Objects.equals(getEndPoint(), that.getEndPoint());
