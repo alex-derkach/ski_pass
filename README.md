@@ -1,4 +1,6 @@
 ## Proposed solution for JavaDay Kyiv student programming contest
+[![Build Status](https://travis-ci.org/alex-derkach/ski_pass.svg?branch=master)](https://travis-ci.org/alex-derkach/ski_pass)
+
 [Task description](http://jug.ua/materials/javaday-kyiv-student-programming-contest/)
 
 To run on Unix, execute in terminal:
