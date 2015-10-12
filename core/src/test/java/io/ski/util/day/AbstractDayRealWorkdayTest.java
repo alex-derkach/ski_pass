@@ -3,14 +3,16 @@ package io.ski.util.day;
 import io.ski.card.Card;
 import io.ski.card.Validator;
 import io.ski.support.validation.BindingResult;
-import io.ski.support.validation.HolidayResolver;
 import io.ski.util.AbstractMockitoTest;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.mockito.Mock;
 
-import java.time.*;
+import java.time.Clock;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.ZoneId;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -24,7 +26,6 @@ public abstract class AbstractDayRealWorkdayTest extends AbstractMockitoTest {
 
   @Mock private Card card;
   @Mock private Clock clock;
-  @Mock private HolidayResolver holidayResolver;
 
   private final LocalDate realWorkday;
 
