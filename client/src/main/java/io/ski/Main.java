@@ -16,8 +16,10 @@ public class Main {
   private static final Random RANDOM = new Random();
   private static final Logger LOG = LogManager.getLogger(Main.class);
 
-  public static void main(String[] args) {
+  private Main() {
+  }
 
+  public static void main(String[] args) {
     CardSystemFactory cardSystemFactory = new CardSystemFactory();
     CardSystem cardSystem = cardSystemFactory.create();
     Turnstile turnstile = new Turnstile(cardSystem);
