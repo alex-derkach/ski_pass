@@ -45,18 +45,18 @@ public class CollectionBasedCardRepositoryTest extends AbstractMockitoTest {
     assertNotNull(collectionBasedCardRepository.get(PERSISTED_CARD_ID));
   }
 
-  public void shouldNotContainNotPersistedCard() {
-    Card card = mock(Card.class);
+  public void shouldNotContainNotPersistentCard() {
+    Card notPersistentCard = mock(Card.class);
 
-    when(card.getId()).thenReturn(NOT_PERSISTED_CARD_ID);
+    when(notPersistentCard.getId()).thenReturn(NOT_PERSISTED_CARD_ID);
 
-    assertFalse(collectionBasedCardRepository.contains(card));
+    assertFalse(collectionBasedCardRepository.contains(notPersistentCard));
   }
 
-  public void shouldNotFindNotPersistedCard() {
-    Card card = mock(Card.class);
+  public void shouldNotFindNotPersistentCard() {
+    Card notPersistentCard = mock(Card.class);
 
-    when(card.getId()).thenReturn(NOT_PERSISTED_CARD_ID);
+    when(notPersistentCard.getId()).thenReturn(NOT_PERSISTED_CARD_ID);
 
     assertNull(collectionBasedCardRepository.get(NOT_PERSISTED_CARD_ID));
   }
