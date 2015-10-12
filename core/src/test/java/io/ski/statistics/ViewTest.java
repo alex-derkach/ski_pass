@@ -34,9 +34,9 @@ public class ViewTest extends AbstractMockitoTest {
   private static final int EXPECTED_COUNT = 4;
   private static final int EXPECTED_LIMITED_COUNT = 2;
   private static final int EXPECTED_UNLIMITED_COUNT = 2;
-  private static final int EXPECTED_COUNT_FROM_TIME_BEFORE_CURRENT_TO_CURRENT = 0;
+  private static final int EXPECTED_COUNT_FROM_TIME_BEFORE_CURRENT_TO_CURRENT_TIME = 0;
   private static final int EXPECTED_COUNT_FROM_TIME_BEFORE_CURRENT_TO_TIME_AFTER_CURRENT = 4;
-  private static final int EXPECTED_COUNT_FROM_CURRENT_TO_TIME_AFTER_CURRENT = 0;
+  private static final int EXPECTED_COUNT_FROM_CURRENT_TO_TIME_AFTER_CURRENT_TIME = 0;
 
   private static PassEventRepository EVENT_REPOSITORY;
   private static List<PassEvent> EVENTS;
@@ -85,7 +85,7 @@ public class ViewTest extends AbstractMockitoTest {
   @Test
   public void shouldContain0EventsWhenFilteredStrictByRangeFromTimeBeforeCurrentToCurrent() {
     assertEquals(
-        EXPECTED_COUNT_FROM_TIME_BEFORE_CURRENT_TO_CURRENT,
+        EXPECTED_COUNT_FROM_TIME_BEFORE_CURRENT_TO_CURRENT_TIME,
         view.filterStrictByRange(TIME_BEFORE_CURRENT, CURRENT_TIME).count()
     );
   }
@@ -101,7 +101,7 @@ public class ViewTest extends AbstractMockitoTest {
   @Test
   public void shouldContain0EventsWhenFilteredStrictByRangeFromCurrentToTimeAfterCurrent() {
     assertEquals(
-        EXPECTED_COUNT_FROM_CURRENT_TO_TIME_AFTER_CURRENT,
+        EXPECTED_COUNT_FROM_CURRENT_TO_TIME_AFTER_CURRENT_TIME,
         view.filterStrictByRange(CURRENT_TIME, TIME_AFTER_CURRENT).count()
     );
   }
