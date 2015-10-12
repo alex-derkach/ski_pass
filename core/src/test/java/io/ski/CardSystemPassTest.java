@@ -10,8 +10,6 @@ import static org.mockito.Mockito.*;
 
 public class CardSystemPassTest extends AbstractCardSystemTest {
 
-  private static final String ERROR_MESSAGE = "Some error";
-
   @Test
   public void shouldApplyValidatorWhenCalledPassWithValidUserCard() {
     cardSystem.pass(validUserCard);
