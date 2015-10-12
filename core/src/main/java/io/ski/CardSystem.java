@@ -1,8 +1,6 @@
 package io.ski;
 
-import io.ski.card.Card;
-import io.ski.card.CardDefinition;
-import io.ski.card.Validator;
+import io.ski.card.*;
 import io.ski.card.event.PostHandleListener;
 import io.ski.card.event.PostValidationListener;
 import io.ski.card.validator.support.HolidayResolverAware;
@@ -43,19 +41,23 @@ public class CardSystem {
     return new View(this.passEventRepository);
   }
 
-  public void registerCardType(CardDefinition<?> cardDefinition) {
-    Objects.requireNonNull(cardDefinition.getDiscriminator());
-    Objects.requireNonNull(cardDefinition.getCardFactory());
-    Objects.requireNonNull(cardDefinition.getValidator());
-    Objects.requireNonNull(cardDefinition.getHandler());
+  public <T extends Card> void registerCardType(CardDefinition<T> cardDefinition) {
+    String discriminator = cardDefinition.getDiscriminator();
+    CardFactory<T> cardFactory = cardDefinition.getCardFactory();
+    Validator<T> validator = cardDefinition.getValidator();
+    Handler<T> handler = cardDefinition.getHandler();
 
-    String type = cardDefinition.getDiscriminator();
-    if (cardProviderResolver.containsKey(type)) {
-      throw new AlreadyRegisteredCardTypeException(type);
+    Objects.requireNonNull(discriminator);
+    Objects.requireNonNull(cardFactory);
+    Objects.requireNonNull(validator);
+    Objects.requireNonNull(handler);
+
+    if (cardProviderResolver.containsKey(discriminator)) {
+      throw new AlreadyRegisteredCardTypeException(discriminator);
     }
 
-    CardProvider<? extends Card> cardProvider = toProvider(cardDefinition);
-    cardProviderResolver.put(type, cardProvider);
+    CardProvider<? extends Card> cardProvider = new CardProvider<>(cardFactory, validator, handler);
+    cardProviderResolver.put(discriminator, cardProvider);
 
     postRegistration(cardProvider);
   }
@@ -144,14 +146,5 @@ public class CardSystem {
   private void initPostListeners() {
     addPostValidationRejectionListener(new ValidationRejectionLogger(this.passEventRepository));
     addPostPassHandleListener(new HandleLogger(this.passEventRepository));
-  }
-
-  @SuppressWarnings("unchecked")
-  private static CardProvider<? extends Card> toProvider(CardDefinition<? extends Card> cardDefinition) {
-    return new CardProvider(
-        cardDefinition.getCardFactory(),
-        cardDefinition.getValidator(),
-        cardDefinition.getHandler()
-    );
   }
 }
