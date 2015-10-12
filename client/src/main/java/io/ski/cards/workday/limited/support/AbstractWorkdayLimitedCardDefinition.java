@@ -9,24 +9,11 @@ import io.ski.card.type.LimitedCard;
 
 public abstract class AbstractWorkdayLimitedCardDefinition implements CardDefinition<LimitedCard> {
 
-  public final String cardType;
-  public final Long tripCount;
-
-  protected AbstractWorkdayLimitedCardDefinition(String cardType, Long tripCount) {
-    this.cardType = cardType;
-    this.tripCount = tripCount;
-  }
-
-  @Override
-  public String getDiscriminator() {
-    return cardType;
-  }
-
   @Override
   public CardFactory<LimitedCard> getCardFactory() {
     return () -> {
-      LimitedCard card = new LimitedCard(cardType);
-      card.setCounter(tripCount);
+      LimitedCard card = new LimitedCard(getDiscriminator());
+      card.setCounter(getTripCount());
       return card;
     };
   }
@@ -41,4 +28,5 @@ public abstract class AbstractWorkdayLimitedCardDefinition implements CardDefini
     return new LimitedHandler<>();
   }
 
+  public abstract Long getTripCount();
 }

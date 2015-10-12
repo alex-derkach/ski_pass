@@ -4,10 +4,16 @@ import io.ski.cards.notworkday.limited.support.AbstractNotWorkdayLimitedCardDefi
 
 public class NotWorkdayLimited50CardDefinition extends AbstractNotWorkdayLimitedCardDefinition {
 
-  public static final String CARD_TYPE = NotWorkdayLimited50CardDefinition.class.getSimpleName();
+  public static final String CARD_DISCRIMINATOR = NotWorkdayLimited50CardDefinition.class.getSimpleName();
   public static final long TRIP_COUNT = 50L;
 
-  public NotWorkdayLimited50CardDefinition() {
-    super(CARD_TYPE, TRIP_COUNT);
+  @Override
+  protected Long getTripCount() {
+    return TRIP_COUNT;
+  }
+
+  @Override
+  public String getDiscriminator() {
+    return CARD_DISCRIMINATOR;
   }
 }

@@ -11,35 +11,20 @@ import java.time.LocalDateTime;
 
 public abstract class AbstractNotWorkdayUnlimitedCardDefinition implements CardDefinition<UnlimitedCard> {
 
-  private final String cardType;
-  private final int startHour;
-  private final int validityHours;
-
-  protected AbstractNotWorkdayUnlimitedCardDefinition(String cardType, int startHour, int validityHours) {
-    this.cardType = cardType;
-    this.startHour = startHour;
-    this.validityHours = validityHours;
-  }
-
-  @Override
-  public String getDiscriminator() {
-    return cardType;
-  }
-
   @Override
   public CardFactory<UnlimitedCard> getCardFactory() {
     return () -> {
-      UnlimitedCard unlimitedCard = new UnlimitedCard(cardType);
+      UnlimitedCard unlimitedCard = new UnlimitedCard(getDiscriminator());
 
       LocalDateTime resultStartPoint = LocalDateTime.now();
       // if current time is after start hour, create a card for tomorrow
-      if(resultStartPoint.getHour() > startHour) {
+      if(resultStartPoint.getHour() > getStartHour()) {
         resultStartPoint = resultStartPoint.plusDays(1);
       }
       // reset minutes and seconds to 00:00
-      resultStartPoint = resultStartPoint.withHour(startHour).withMinute(0).withSecond(0);
+      resultStartPoint = resultStartPoint.withHour(getStartHour()).withMinute(0).withSecond(0);
       unlimitedCard.setStartPoint(resultStartPoint);
-      unlimitedCard.setEndPoint(resultStartPoint.plusHours(validityHours));
+      unlimitedCard.setEndPoint(resultStartPoint.plusHours(getValidityHours()));
       return unlimitedCard;
     };
   }
@@ -54,4 +39,6 @@ public abstract class AbstractNotWorkdayUnlimitedCardDefinition implements CardD
     return new UnlimitedHandler<>();
   }
 
+  protected abstract int getStartHour();
+  protected abstract int getValidityHours();
 }

@@ -21,8 +21,8 @@ public class Main {
     Turnstile turnstile = new Turnstile(cardSystem);
 
     List<String> types = Arrays.asList(
-        WorkdayLimited10CardDefinition.CARD_TYPE,
-        WorkdayUnlimitedFirstHalfOfDayCardDefinition.CARD_TYPE
+        WorkdayLimited10CardDefinition.CARD_DISCRIMINATOR,
+        WorkdayUnlimitedFirstHalfOfDayCardDefinition.CARD_DISCRIMINATOR
     );
 
     // build list of cards
