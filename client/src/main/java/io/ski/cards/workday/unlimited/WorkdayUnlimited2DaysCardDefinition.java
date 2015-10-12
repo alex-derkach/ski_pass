@@ -4,9 +4,9 @@ import io.ski.cards.workday.unlimited.support.AbstractWorkdayUnlimitedCardDefini
 
 public class WorkdayUnlimited2DaysCardDefinition extends AbstractWorkdayUnlimitedCardDefinition {
 
-  public static final String CARD_DISCRIMINATOR = WorkdayUnlimited2DaysCardDefinition.class.getSimpleName();
-  public static final int START_HOUR = 9;
-  public static final int CARD_VALIDITY_HOURS = 24 * 2;
+  private static final String CARD_DISCRIMINATOR = WorkdayUnlimited2DaysCardDefinition.class.getSimpleName();
+  private static final int START_HOUR = 9;
+  private static final int CARD_VALIDITY_HOURS = 24 * 2;
 
   @Override
   protected int getStartHour() {

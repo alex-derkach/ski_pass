@@ -1,7 +1,5 @@
 package io.ski;
 
-import io.ski.cards.workday.limited.WorkdayLimited10CardDefinition;
-import io.ski.cards.workday.unlimited.WorkdayUnlimitedFirstHalfOfDayCardDefinition;
 import io.ski.statistics.domain.PassStatus;
 
 import java.util.Arrays;
@@ -21,8 +19,8 @@ public class Main {
     Turnstile turnstile = new Turnstile(cardSystem);
 
     List<String> types = Arrays.asList(
-        WorkdayLimited10CardDefinition.CARD_DISCRIMINATOR,
-        WorkdayUnlimitedFirstHalfOfDayCardDefinition.CARD_DISCRIMINATOR
+        "WorkdayLimited10CardDefinition",
+        "WorkdayUnlimitedFirstHalfOfDayCardDefinition"
     );
 
     // build list of cards

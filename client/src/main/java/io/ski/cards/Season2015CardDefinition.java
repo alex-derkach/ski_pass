@@ -12,11 +12,11 @@ import java.time.Month;
 
 public class Season2015CardDefinition implements CardDefinition<UnlimitedCard> {
 
-  public static final String CARD_TYPE = Season2015CardDefinition.class.getSimpleName();
-  public static final int SEASON_LENGTH_MONTHS = 3;
+  private static final String CARD_TYPE = Season2015CardDefinition.class.getSimpleName();
+  private static final int SEASON_LENGTH_MONTHS = 3;
 
-  public static final LocalDateTime START_POINT = LocalDate.of(2015, Month.DECEMBER, 1).atStartOfDay();
-  public static final LocalDateTime END_POINT = START_POINT.plusMonths(SEASON_LENGTH_MONTHS);
+  private static final LocalDateTime START_POINT = LocalDate.of(2015, Month.DECEMBER, 1).atStartOfDay();
+  private static final LocalDateTime END_POINT = START_POINT.plusMonths(SEASON_LENGTH_MONTHS);
 
   @Override
   public String getDiscriminator() {

@@ -4,9 +4,9 @@ import io.ski.cards.notworkday.unlimited.support.AbstractNotWorkdayUnlimitedCard
 
 public class NotWorkdayUnlimitedSecondHalfOfDayCardDefinition extends AbstractNotWorkdayUnlimitedCardDefinition {
 
-  public static final String CARD_DISCRIMINATOR = NotWorkdayUnlimitedSecondHalfOfDayCardDefinition.class.getSimpleName();
-  public static final int START_HOUR = 13;
-  public static final int CARD_VALIDITY_HOURS = 4;
+  private static final String CARD_DISCRIMINATOR = NotWorkdayUnlimitedSecondHalfOfDayCardDefinition.class.getSimpleName();
+  private static final int START_HOUR = 13;
+  private static final int CARD_VALIDITY_HOURS = 4;
 
   @Override
   protected int getStartHour() {
