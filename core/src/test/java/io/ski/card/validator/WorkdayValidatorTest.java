@@ -6,8 +6,11 @@ import io.ski.util.day.AbstractDayValidatorTest;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.lang.reflect.Field;
+import java.time.Clock;
+
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
 public class WorkdayValidatorTest extends AbstractDayValidatorTest {
 
@@ -42,11 +45,11 @@ public class WorkdayValidatorTest extends AbstractDayValidatorTest {
   }
 
   @Test
-  public void shouldNotThrowExceptionWhenCalledDefaultConstructor() {
-    try {
-      new WorkdayValidator<>();
-    } catch (Exception exception) {
-      fail("Unexpected exception occurred during construction: " + exception.getMessage());
-    }
+  public void shouldInstantiateWithSystemDefaultZoneClockByDefault() throws NoSuchFieldException, IllegalAccessException {
+    WorkdayValidator<Card> workdayValidator = new WorkdayValidator<>();
+    Field clockField = workdayValidator.getClass().getDeclaredField("clock");
+    clockField.setAccessible(true);
+    Clock givenClock = (Clock) clockField.get(workdayValidator);
+    assertEquals(Clock.systemDefaultZone(), givenClock);
   }
 }

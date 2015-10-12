@@ -8,11 +8,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 
+import java.lang.reflect.Field;
 import java.time.*;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 import static org.mockito.Mockito.when;
 
 public class TimeRangeValidatorTest extends AbstractMockitoTest {
@@ -95,11 +94,11 @@ public class TimeRangeValidatorTest extends AbstractMockitoTest {
   }
 
   @Test
-  public void shouldNotThrowExceptionWhenCalledDefaultConstructor() {
-    try {
-      new TimeRangeValidator<>();
-    } catch (Exception exception) {
-      fail("Unexpected exception occurred during construction: " + exception.getMessage());
-    }
+  public void shouldInstantiateWithSystemDefaultZoneClockByDefault() throws NoSuchFieldException, IllegalAccessException {
+      TimeRangeValidator<UnlimitedCard> timeRangeValidator = new TimeRangeValidator<>();
+      Field clockField = timeRangeValidator.getClass().getDeclaredField("clock");
+      clockField.setAccessible(true);
+      Clock givenClock = (Clock) clockField.get(timeRangeValidator);
+      assertEquals(Clock.systemDefaultZone(), givenClock);
   }
 }
