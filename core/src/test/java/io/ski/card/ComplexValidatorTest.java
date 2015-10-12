@@ -11,7 +11,6 @@ import static org.mockito.Mockito.*;
 
 public class ComplexValidatorTest extends AbstractMockitoTest {
 
-  private static final Validator<Card> DUMMY_VALIDATOR = (card, bindingResult) -> {};
   private static final Validator<Card> NULL_VALIDATOR = null;
   private static final BindingResult DUMMY_BINDING_RESULT = new BindingResult();
   private static final Card DUMMY_CARD = mock(Card.class);
@@ -21,9 +20,10 @@ public class ComplexValidatorTest extends AbstractMockitoTest {
 
   @Test
   public void shouldAddValidatorToCollectionWhenRegistered() {
-    validator.registerValidators(DUMMY_VALIDATOR);
+    Validator<Card> dummyValidator = (card, bindingResult) -> {};
+    validator.registerValidators(dummyValidator);
 
-    assertTrue(validator.getValidators().contains(DUMMY_VALIDATOR));
+    assertTrue(validator.getValidators().contains(dummyValidator));
   }
 
   @Test(expected = NullPointerException.class)

@@ -20,7 +20,7 @@ public class CollectionBasedPassEventRepositoryTest extends AbstractMockitoTest 
   }
 
   @Test
-  public void shouldContainPersistedEvent() {
+  public void shouldContainPersistentEvent() {
     repository.persist(passEvent);
 
     assertTrue(repository.findAll().contains(passEvent));
