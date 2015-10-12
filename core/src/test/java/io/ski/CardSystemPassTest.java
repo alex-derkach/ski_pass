@@ -5,7 +5,6 @@ import io.ski.card.event.PostValidationListener;
 import io.ski.support.validation.BindingResult;
 import org.junit.Test;
 
-import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.*;
 
 public class CardSystemPassTest extends AbstractCardSystemTest {
