@@ -1,4 +1,4 @@
-package io.ski.cards.not_workday.limited.support;
+package io.ski.cards.notworkday.limited.support;
 
 import io.ski.card.CardDefinition;
 import io.ski.card.CardFactory;

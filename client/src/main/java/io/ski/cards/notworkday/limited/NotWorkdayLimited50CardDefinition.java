@@ -1,6 +1,6 @@
-package io.ski.cards.not_workday.limited;
+package io.ski.cards.notworkday.limited;
 
-import io.ski.cards.not_workday.limited.support.AbstractNotWorkdayLimitedCardDefinition;
+import io.ski.cards.notworkday.limited.support.AbstractNotWorkdayLimitedCardDefinition;
 
 public class NotWorkdayLimited50CardDefinition extends AbstractNotWorkdayLimitedCardDefinition {
 

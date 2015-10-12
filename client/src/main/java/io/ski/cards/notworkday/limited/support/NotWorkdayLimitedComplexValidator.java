@@ -1,4 +1,4 @@
-package io.ski.cards.not_workday.limited.support;
+package io.ski.cards.notworkday.limited.support;
 
 import io.ski.card.ComplexValidator;
 import io.ski.card.type.LimitedCard;
