@@ -1,6 +1,8 @@
 package io.ski;
 
 import io.ski.statistics.domain.PassStatus;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Arrays;
 import java.util.List;
@@ -14,6 +16,8 @@ public class Main {
   public static final Random RANDOM = new Random();
 
   public static void main(String[] args) {
+    Logger logger = LogManager.getLogger(Main.class);
+
     CardSystemFactory cardSystemFactory = new CardSystemFactory();
     CardSystem cardSystem = cardSystemFactory.create();
     Turnstile turnstile = new Turnstile(cardSystem);
@@ -36,8 +40,8 @@ public class Main {
         .limit(PASS_COUNT)
         .forEach(number -> turnstile.pass(cards.get(number)));
 
-    System.out.printf("%d events overall\n", cardSystem.createEventQueryView().count());
-    System.out.printf("%d events related to validation rejection\n", cardSystem.createEventQueryView().filterByStatus(PassStatus.UNAUTHORIZED).count());
-    System.out.printf("%d events related to successful passing\n", cardSystem.createEventQueryView().filterByStatus(PassStatus.AUTHORIZED).count());
+    logger.info(String.format("%5d events overall", cardSystem.createEventQueryView().count()));
+    logger.info(String.format("%5d events related to validation rejection", cardSystem.createEventQueryView().filterByStatus(PassStatus.UNAUTHORIZED).count()));
+    logger.info(String.format("%5d events related to successful passing", cardSystem.createEventQueryView().filterByStatus(PassStatus.AUTHORIZED).count()));
   }
 }
