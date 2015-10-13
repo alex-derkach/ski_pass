@@ -14,9 +14,9 @@ public class Main {
   public static final int CARD_COUNT = 500;
   public static final int PASS_COUNT = 20000;
   public static final Random RANDOM = new Random();
+  private static final Logger LOG = LogManager.getLogger(Main.class);
 
   public static void main(String[] args) {
-    Logger logger = LogManager.getLogger(Main.class);
 
     CardSystemFactory cardSystemFactory = new CardSystemFactory();
     CardSystem cardSystem = cardSystemFactory.create();
@@ -40,8 +40,8 @@ public class Main {
         .limit(PASS_COUNT)
         .forEach(number -> turnstile.pass(cards.get(number)));
 
-    logger.info(String.format("%5d events overall", cardSystem.createEventQueryView().count()));
-    logger.info(String.format("%5d events related to validation rejection", cardSystem.createEventQueryView().filterByStatus(PassStatus.UNAUTHORIZED).count()));
-    logger.info(String.format("%5d events related to successful passing", cardSystem.createEventQueryView().filterByStatus(PassStatus.AUTHORIZED).count()));
+    LOG.info(String.format("%5d events overall", cardSystem.createEventQueryView().count()));
+    LOG.info(String.format("%5d events related to validation rejection", cardSystem.createEventQueryView().filterByStatus(PassStatus.UNAUTHORIZED).count()));
+    LOG.info(String.format("%5d events related to successful passing", cardSystem.createEventQueryView().filterByStatus(PassStatus.AUTHORIZED).count()));
   }
 }
