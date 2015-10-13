@@ -1,5 +1,6 @@
 ## Proposed solution for JavaDay Kyiv student programming contest
 [![Build Status](https://travis-ci.org/alex-derkach/ski_pass.svg?branch=master)](https://travis-ci.org/alex-derkach/ski_pass)
+[![Coverage Status](https://coveralls.io/repos/alex-derkach/ski_pass/badge.svg?branch=master&service=github)](https://coveralls.io/github/alex-derkach/ski_pass?branch=master)
 
 [Task description](http://jug.ua/materials/javaday-kyiv-student-programming-contest/)
 

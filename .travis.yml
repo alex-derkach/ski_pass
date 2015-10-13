@@ -1,4 +1,7 @@
 language: java
 jdk:
   - oraclejdk8
-install: mvn test
+install:
+  - mvn test
+after_success:
+  - mvn -f core/pom.xml jacoco:report coveralls:report -DrepoToken=${repo_token}
