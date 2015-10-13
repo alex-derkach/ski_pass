@@ -11,9 +11,9 @@ import java.util.stream.Collectors;
 
 public class Main {
 
-  public static final int CARD_COUNT = 500;
-  public static final int PASS_COUNT = 20000;
-  public static final Random RANDOM = new Random();
+  private static final int CARD_COUNT = 500;
+  private static final int PASS_COUNT = 20000;
+  private static final Random RANDOM = new Random();
   private static final Logger LOG = LogManager.getLogger(Main.class);
 
   public static void main(String[] args) {
