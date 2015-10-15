@@ -12,7 +12,7 @@ mvn package \
 
 ## Description
 
-To enable creation of specific type of card, you need to register required lifecycle objects, by providing an instance of [CardDefinition](#carddefinition) to [CardSystem.registerCardType()](https://github.com/alex-derkach/ski_pass/blob/master/core/src/main/java/io/ski/CardSystem.java#L46) method.
+To enable creation of specific type of card, you need to register required lifecycle objects, by providing an instance of [CardDefinition](#carddefinition) to [CardSystem.registerCardType()](https://github.com/alex-derkach/ski_pass/blob/master/core/src/main/java/io/ski/CardSystem.java#L44) method.
 
 ### CardDefinition
 It is an interface used to provide lifecycle objects, related to specific type of pass card. Methods:
@@ -36,4 +36,4 @@ Instances of this [type](https://github.com/alex-derkach/ski_pass/blob/master/co
 
 
 ### View
-Obtained by [CardSystem.createEventQueryView()](https://github.com/alex-derkach/ski_pass/blob/master/core/src/main/java/io/ski/CardSystem.java#L42), is used for quering events in the system. Example usage is stated in [main method](https://github.com/alex-derkach/ski_pass/blob/master/client/src/main/java/io/ski/Main.java#L18).
+Obtained by [CardSystem.createEventQueryView()](https://github.com/alex-derkach/ski_pass/blob/master/core/src/main/java/io/ski/CardSystem.java#L40), is used for quering events in the system. Example usage is stated in [main method](https://github.com/alex-derkach/ski_pass/blob/master/client/src/main/java/io/ski/Main.java#L22).
