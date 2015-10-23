@@ -2,7 +2,7 @@ package io.ski;
 
 import io.ski.card.event.PostHandleListener;
 import io.ski.card.event.PostValidationListener;
-import io.ski.support.validation.BindingResult;
+import io.ski.support.validation.ValidationResult;
 import org.junit.Test;
 
 import static org.mockito.Mockito.*;
@@ -13,7 +13,7 @@ public class CardSystemPassTest extends AbstractCardSystemTest {
   public void shouldApplyValidatorWhenCalledPassWithValidUserCard() {
     cardSystem.pass(validUserCard);
 
-    verify(validator).validate(eq(defaultCard), any(BindingResult.class));
+    verify(validator).validate(eq(defaultCard), any(ValidationResult.class));
   }
 
   @Test
@@ -40,6 +40,6 @@ public class CardSystemPassTest extends AbstractCardSystemTest {
     cardSystem.addPostValidationRejectionListener(postValidationListener);
     cardSystem.pass(validUserCard);
 
-    verify(postValidationListener).postValidation(eq(defaultCard), any(BindingResult.class));
+    verify(postValidationListener).postValidation(eq(defaultCard), any(ValidationResult.class));
   }
 }

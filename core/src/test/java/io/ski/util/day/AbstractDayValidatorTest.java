@@ -3,7 +3,7 @@ package io.ski.util.day;
 import io.ski.card.Card;
 import io.ski.card.Validator;
 import io.ski.card.validator.support.HolidayResolverAware;
-import io.ski.support.validation.BindingResult;
+import io.ski.support.validation.ValidationResult;
 import io.ski.support.validation.HolidayResolver;
 import io.ski.util.AbstractMockitoTest;
 import org.junit.Before;
@@ -30,28 +30,28 @@ public abstract class AbstractDayValidatorTest extends AbstractMockitoTest {
     when(clock.getZone()).thenReturn(DEFAULT_ZONE_ID);
   }
 
-  protected void validateOnSaturday(Validator<Card> validator, BindingResult bindingResult) {
+  protected void validateOnSaturday(Validator<Card> validator, ValidationResult validationResult) {
     Instant saturdayInstant = DayUtils.dateToInstant(SATURDAY_DATE);
     when(clock.instant()).thenReturn(saturdayInstant);
 
-    validator.validate(card, bindingResult);
+    validator.validate(card, validationResult);
   }
 
-  protected void validateOnSunday(Validator<Card> validator, BindingResult bindingResult) {
+  protected void validateOnSunday(Validator<Card> validator, ValidationResult validationResult) {
     Instant sundayInstant = DayUtils.dateToInstant(SUNDAY_DATE);
     when(clock.instant()).thenReturn(sundayInstant);
 
-    validator.validate(card, bindingResult);
+    validator.validate(card, validationResult);
   }
 
-  protected void validateOnHoliday(Validator<Card> validator, BindingResult bindingResult) {
+  protected void validateOnHoliday(Validator<Card> validator, ValidationResult validationResult) {
     Instant saturdayInstant = DayUtils.dateToInstant(HOLIDAY_DATE);
     when(clock.instant()).thenReturn(saturdayInstant);
     when(holidayResolver.isHoliday(HOLIDAY_DATE)).thenReturn(true);
 
     ((HolidayResolverAware)validator).setHolidayResolver(holidayResolver);
 
-    validator.validate(card, bindingResult);
+    validator.validate(card, validationResult);
   }
 
   protected Clock getClock() {

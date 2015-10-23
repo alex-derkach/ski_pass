@@ -1,7 +1,7 @@
 package io.ski.card.validator;
 
 import io.ski.card.Card;
-import io.ski.support.validation.BindingResult;
+import io.ski.support.validation.ValidationResult;
 import io.ski.util.day.AbstractDayValidatorTest;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,33 +15,33 @@ import static org.junit.Assert.assertTrue;
 public class WorkdayValidatorTest extends AbstractDayValidatorTest {
 
   protected WorkdayValidator<Card> validator;
-  protected BindingResult bindingResult;
+  protected ValidationResult validationResult;
 
   @Before
   public void before() {
     validator = new WorkdayValidator<>(getClock());
-    bindingResult = new BindingResult();
+    validationResult = new ValidationResult();
   }
 
   @Test
   public void shouldAddErrorOnSaturday() {
-    validateOnSaturday(validator, bindingResult);
+    validateOnSaturday(validator, validationResult);
 
-    assertTrue(bindingResult.hasErrors());
+    assertTrue(validationResult.hasErrors());
   }
 
   @Test
   public void shouldAddErrorOnSunday() {
-    validateOnSunday(validator, bindingResult);
+    validateOnSunday(validator, validationResult);
 
-    assertTrue(bindingResult.hasErrors());
+    assertTrue(validationResult.hasErrors());
   }
 
   @Test
   public void shouldAddErrorOnHoliday() {
-    validateOnHoliday(validator, bindingResult);
+    validateOnHoliday(validator, validationResult);
 
-    assertTrue(bindingResult.hasErrors());
+    assertTrue(validationResult.hasErrors());
   }
 
   @Test

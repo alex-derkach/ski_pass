@@ -11,7 +11,7 @@ import io.ski.statistics.HandleLogger;
 import io.ski.statistics.ValidationRejectionLogger;
 import io.ski.statistics.View;
 import io.ski.statistics.repository.PassEventRepository;
-import io.ski.support.validation.BindingResult;
+import io.ski.support.validation.ValidationResult;
 import io.ski.support.validation.HolidayResolver;
 
 import java.util.*;
@@ -70,11 +70,11 @@ public class CardSystem {
 
   public boolean pass(UserCard userCard) {
     Card card = getCard(userCard);
-    BindingResult bindingResult = new BindingResult();
+    ValidationResult validationResult = new ValidationResult();
 
-    applyValidator(card, bindingResult);
-    applyPostValidationListeners(card, bindingResult);
-    if (bindingResult.hasErrors()) {
+    applyValidator(card, validationResult);
+    applyPostValidationListeners(card, validationResult);
+    if (validationResult.hasErrors()) {
       return false;
     }
 
@@ -116,9 +116,9 @@ public class CardSystem {
   }
 
   @SuppressWarnings("unchecked")
-  private void applyValidator(Card card, BindingResult bindingResult) {
+  private void applyValidator(Card card, ValidationResult validationResult) {
     String cardDiscriminator = card.getDiscriminator();
-    getProvider(cardDiscriminator).getValidator().validate(card, bindingResult);
+    getProvider(cardDiscriminator).getValidator().validate(card, validationResult);
   }
 
   @SuppressWarnings("unchecked")
@@ -127,8 +127,8 @@ public class CardSystem {
     getProvider(cardDiscriminator).getHandler().handle(card);
   }
 
-  private void applyPostValidationListeners(Card card, BindingResult bindingResult) {
-    postValidationListeners.parallelStream().forEach(l -> l.postValidation(card, bindingResult));
+  private void applyPostValidationListeners(Card card, ValidationResult validationResult) {
+    postValidationListeners.parallelStream().forEach(l -> l.postValidation(card, validationResult));
   }
 
   private void applyPostHandleListeners(Card card) {

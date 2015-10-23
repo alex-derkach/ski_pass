@@ -2,7 +2,7 @@ package io.ski.card.validator;
 
 import io.ski.card.Validator;
 import io.ski.card.type.UnlimitedCard;
-import io.ski.support.validation.BindingResult;
+import io.ski.support.validation.ValidationResult;
 
 import java.time.Clock;
 import java.time.LocalDateTime;
@@ -24,13 +24,13 @@ public class TimeRangeValidator<T extends UnlimitedCard> implements Validator<T>
   }
 
   @Override
-  public void validate(T card, BindingResult bindingResult) {
+  public void validate(T card, ValidationResult validationResult) {
     LocalDateTime time = LocalDateTime.now(clock);
     if (time.isBefore(card.getStartPoint())) {
-      bindingResult.reject(YOUR_CARD_PERIOD_HAS_NOT_STARTED_MESSAGE);
+      validationResult.reject(YOUR_CARD_PERIOD_HAS_NOT_STARTED_MESSAGE);
     }
     if (time.isAfter(card.getEndPoint())) {
-      bindingResult.reject(YOUR_CARD_HAS_EXPIRED_MESSAGE);
+      validationResult.reject(YOUR_CARD_HAS_EXPIRED_MESSAGE);
     }
   }
 }

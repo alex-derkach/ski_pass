@@ -2,7 +2,7 @@ package io.ski.card.validator;
 
 import io.ski.util.AbstractMockitoTest;
 import io.ski.card.type.LimitedCard;
-import io.ski.support.validation.BindingResult;
+import io.ski.support.validation.ValidationResult;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -22,47 +22,47 @@ public class LimitedValidatorTest extends AbstractMockitoTest {
   private LimitedCard card;
 
   private LimitedValidator<LimitedCard> validator;
-  private BindingResult bindingResult;
+  private ValidationResult validationResult;
 
   @Before
   public void setup() {
     validator = new LimitedValidator<>();
-    bindingResult = new BindingResult();
+    validationResult = new ValidationResult();
   }
 
   @Test
   public void shouldAddErrorWhenCardHasLessThanZeroTripsLeft() {
     when(card.getCounter()).thenReturn(LESS_THAN_ZERO_TRIPS_COUNT);
 
-    validator.validate(card, bindingResult);
+    validator.validate(card, validationResult);
 
-    assertTrue(bindingResult.hasErrors());
+    assertTrue(validationResult.hasErrors());
   }
 
   @Test
   public void shouldAddErrorWhenCardHasZeroTripsLeft() {
     when(card.getCounter()).thenReturn(ZERO_TRIPS_COUNT);
 
-    validator.validate(card, bindingResult);
+    validator.validate(card, validationResult);
 
-    assertTrue(bindingResult.hasErrors());
+    assertTrue(validationResult.hasErrors());
   }
 
   @Test
   public void shouldNotAddErrorWhenCardHasOneTripLeft() {
     when(card.getCounter()).thenReturn(ONE_TRIP_COUNT);
 
-    validator.validate(card, bindingResult);
+    validator.validate(card, validationResult);
 
-    assertFalse(bindingResult.hasErrors());
+    assertFalse(validationResult.hasErrors());
   }
 
   @Test
   public void shouldNotAddErrorWhenCardHasMoreThanOneTripLeft() {
     when(card.getCounter()).thenReturn(MORE_THAN_ONE_TRIP_COUNT);
 
-    validator.validate(card, bindingResult);
+    validator.validate(card, validationResult);
 
-    assertFalse(bindingResult.hasErrors());
+    assertFalse(validationResult.hasErrors());
   }
 }

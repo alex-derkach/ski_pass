@@ -2,7 +2,7 @@ package io.ski.card.validator;
 
 import io.ski.util.AbstractMockitoTest;
 import io.ski.card.Card;
-import io.ski.support.validation.BindingResult;
+import io.ski.support.validation.ValidationResult;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -20,29 +20,29 @@ public class BlockedValidatorTest extends AbstractMockitoTest {
   private Card card;
 
   private BlockedValidator<Card> validator;
-  private BindingResult bindingResult;
+  private ValidationResult validationResult;
 
   @Before
   public void setup() {
     validator = new BlockedValidator<>();
-    bindingResult = new BindingResult();
+    validationResult = new ValidationResult();
   }
 
   @Test
   public void shouldAddErrorWhenCardIsBlocked() {
     when(card.isBlocked()).thenReturn(BLOCKED_CARD_STATE);
 
-    validator.validate(card, bindingResult);
+    validator.validate(card, validationResult);
 
-    assertTrue(bindingResult.hasErrors());
+    assertTrue(validationResult.hasErrors());
   }
 
   @Test
   public void shouldNotAddErrorWhenCardIsNotBlocked() {
     when(card.isBlocked()).thenReturn(NON_BLOCKED_CARD_STATE);
 
-    validator.validate(card, bindingResult);
+    validator.validate(card, validationResult);
 
-    assertFalse(bindingResult.hasErrors());
+    assertFalse(validationResult.hasErrors());
   }
 }

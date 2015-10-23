@@ -1,6 +1,6 @@
 package io.ski.card;
 
-import io.ski.support.validation.BindingResult;
+import io.ski.support.validation.ValidationResult;
 
 import java.util.*;
 
@@ -25,7 +25,7 @@ public abstract class ComplexValidator<T extends Card> implements Validator<T> {
   }
 
   @Override
-  public final void validate(T card, BindingResult bindingResult) {
-    this.validators.forEach(v -> v.validate(card, bindingResult));
+  public final void validate(T card, ValidationResult validationResult) {
+    this.validators.forEach(v -> v.validate(card, validationResult));
   }
 }

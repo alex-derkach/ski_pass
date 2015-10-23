@@ -4,7 +4,7 @@ import io.ski.card.Card;
 import io.ski.card.event.PostValidationListener;
 import io.ski.statistics.domain.UnauthorizedPassEvent;
 import io.ski.statistics.repository.PassEventRepository;
-import io.ski.support.validation.BindingResult;
+import io.ski.support.validation.ValidationResult;
 
 import java.time.LocalDateTime;
 
@@ -17,12 +17,12 @@ public class ValidationRejectionLogger implements PostValidationListener {
   }
 
   @Override
-  public void postValidation(Card card, BindingResult bindingResult) {
-    if (!bindingResult.hasErrors())
+  public void postValidation(Card card, ValidationResult validationResult) {
+    if (!validationResult.hasErrors())
       return;
 
     LocalDateTime now = LocalDateTime.now();
-    UnauthorizedPassEvent event = new UnauthorizedPassEvent(bindingResult.getErrors(), now, card);
+    UnauthorizedPassEvent event = new UnauthorizedPassEvent(validationResult.getErrors(), now, card);
     passEventRepository.persist(event);
   }
 }

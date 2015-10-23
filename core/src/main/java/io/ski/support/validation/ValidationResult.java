@@ -5,10 +5,10 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-public class BindingResult {
+public class ValidationResult {
   private final List<String> errors;
 
-  public BindingResult() {
+  public ValidationResult() {
     errors = new LinkedList<>();
   }
 

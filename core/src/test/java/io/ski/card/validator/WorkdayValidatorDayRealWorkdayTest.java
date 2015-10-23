@@ -1,7 +1,7 @@
 package io.ski.card.validator;
 
 import io.ski.card.Card;
-import io.ski.support.validation.BindingResult;
+import io.ski.support.validation.ValidationResult;
 import io.ski.util.day.AbstractDayRealWorkdayTest;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,7 +13,7 @@ import static org.junit.Assert.assertFalse;
 public class WorkdayValidatorDayRealWorkdayTest extends AbstractDayRealWorkdayTest {
 
   protected WorkdayValidator<Card> validator;
-  protected BindingResult bindingResult;
+  protected ValidationResult validationResult;
 
   // pass data to parent
   public WorkdayValidatorDayRealWorkdayTest(LocalDate realWorkday) {
@@ -23,13 +23,13 @@ public class WorkdayValidatorDayRealWorkdayTest extends AbstractDayRealWorkdayTe
   @Before
   public void before() {
     validator = new WorkdayValidator<>(getClock());
-    bindingResult = new BindingResult();
+    validationResult = new ValidationResult();
   }
 
   @Test
   public void shouldNotAddErrorOnRealWorkday() {
-    validateOnRealWorkday(validator, bindingResult);
+    validateOnRealWorkday(validator, validationResult);
 
-    assertFalse(bindingResult.hasErrors());
+    assertFalse(validationResult.hasErrors());
   }
 }

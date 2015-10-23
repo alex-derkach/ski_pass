@@ -2,7 +2,7 @@ package io.ski.card.validator;
 
 import io.ski.util.AbstractMockitoTest;
 import io.ski.card.type.UnlimitedCard;
-import io.ski.support.validation.BindingResult;
+import io.ski.support.validation.ValidationResult;
 import io.ski.util.day.DayUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -29,13 +29,13 @@ public class TimeRangeValidatorTest extends AbstractMockitoTest {
   @Mock private UnlimitedCard card;
 
   private TimeRangeValidator<UnlimitedCard> validator;
-  private BindingResult bindingResult;
+  private ValidationResult validationResult;
 
 
   @Before
   public void setup() {
     validator = new TimeRangeValidator<>(clock);
-    bindingResult = new BindingResult();
+    validationResult = new ValidationResult();
 
     when(clock.getZone()).thenReturn(DEFAULT_ZONE_ID);
 
@@ -48,9 +48,9 @@ public class TimeRangeValidatorTest extends AbstractMockitoTest {
     Instant instant = DayUtils.dateTimeToInstant(TIME_BEFORE_START_POINT);
     when(clock.instant()).thenReturn(instant);
 
-    validator.validate(card, bindingResult);
+    validator.validate(card, validationResult);
 
-    assertTrue(bindingResult.hasErrors());
+    assertTrue(validationResult.hasErrors());
   }
 
   @Test
@@ -58,9 +58,9 @@ public class TimeRangeValidatorTest extends AbstractMockitoTest {
     Instant instant = DayUtils.dateTimeToInstant(TIME_START_POINT);
     when(clock.instant()).thenReturn(instant);
 
-    validator.validate(card, bindingResult);
+    validator.validate(card, validationResult);
 
-    assertFalse(bindingResult.hasErrors());
+    assertFalse(validationResult.hasErrors());
   }
 
   @Test
@@ -68,9 +68,9 @@ public class TimeRangeValidatorTest extends AbstractMockitoTest {
     Instant instant = DayUtils.dateTimeToInstant(TIME_MIDDLE_POINT);
     when(clock.instant()).thenReturn(instant);
 
-    validator.validate(card, bindingResult);
+    validator.validate(card, validationResult);
 
-    assertFalse(bindingResult.hasErrors());
+    assertFalse(validationResult.hasErrors());
   }
 
   @Test
@@ -78,9 +78,9 @@ public class TimeRangeValidatorTest extends AbstractMockitoTest {
     Instant instant = DayUtils.dateTimeToInstant(TIME_END_POINT);
     when(clock.instant()).thenReturn(instant);
 
-    validator.validate(card, bindingResult);
+    validator.validate(card, validationResult);
 
-    assertFalse(bindingResult.hasErrors());
+    assertFalse(validationResult.hasErrors());
   }
 
   @Test
@@ -88,9 +88,9 @@ public class TimeRangeValidatorTest extends AbstractMockitoTest {
     Instant instant = DayUtils.dateTimeToInstant(TIME_AFTER_END_POINT);
     when(clock.instant()).thenReturn(instant);
 
-    validator.validate(card, bindingResult);
+    validator.validate(card, validationResult);
 
-    assertTrue(bindingResult.hasErrors());
+    assertTrue(validationResult.hasErrors());
   }
 
   @Test

@@ -2,7 +2,7 @@ package io.ski.util.day;
 
 import io.ski.card.Card;
 import io.ski.card.Validator;
-import io.ski.support.validation.BindingResult;
+import io.ski.support.validation.ValidationResult;
 import io.ski.util.AbstractMockitoTest;
 import org.junit.Before;
 import org.junit.runner.RunWith;
@@ -39,10 +39,10 @@ public abstract class AbstractDayRealWorkdayTest extends AbstractMockitoTest {
     when(clock.getZone()).thenReturn(DEFAULT_ZONE_ID);
   }
 
-  protected void validateOnRealWorkday(Validator<Card> validator, BindingResult bindingResult) {
+  protected void validateOnRealWorkday(Validator<Card> validator, ValidationResult validationResult) {
     when(clock.instant()).thenReturn(DayUtils.dateToInstant(realWorkday));
 
-    validator.validate(card, bindingResult);
+    validator.validate(card, validationResult);
   }
 
   @Parameterized.Parameters

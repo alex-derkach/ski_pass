@@ -1,8 +1,8 @@
 package io.ski.card;
 
-import io.ski.support.validation.BindingResult;
+import io.ski.support.validation.ValidationResult;
 
 public interface Validator<T extends Card> {
 
-  void validate(T card, BindingResult bindingResult);
+  void validate(T card, ValidationResult validationResult);
 }

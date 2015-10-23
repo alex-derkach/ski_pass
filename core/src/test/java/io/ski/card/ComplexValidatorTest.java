@@ -1,7 +1,7 @@
 package io.ski.card;
 
 import io.ski.util.AbstractMockitoTest;
-import io.ski.support.validation.BindingResult;
+import io.ski.support.validation.ValidationResult;
 import org.junit.Test;
 import org.mockito.InOrder;
 import org.mockito.Mock;
@@ -12,7 +12,7 @@ import static org.mockito.Mockito.*;
 public class ComplexValidatorTest extends AbstractMockitoTest {
 
   private static final Validator<Card> NULL_VALIDATOR = null;
-  private static final BindingResult DUMMY_BINDING_RESULT = new BindingResult();
+  private static final ValidationResult DUMMY_BINDING_RESULT = new ValidationResult();
   private static final Card DUMMY_CARD = mock(Card.class);
 
   @Mock
@@ -36,12 +36,12 @@ public class ComplexValidatorTest extends AbstractMockitoTest {
   public void shouldCallRegisteredValidatorWhenCalledValidate() {
     Validator spiedValidator = mock(Validator.class);
     Card card = mock(Card.class);
-    BindingResult bindingResult = new BindingResult();
+    ValidationResult validationResult = new ValidationResult();
 
     validator.registerValidators(spiedValidator);
-    validator.validate(card, bindingResult);
+    validator.validate(card, validationResult);
 
-    verify(spiedValidator).validate(card, bindingResult);
+    verify(spiedValidator).validate(card, validationResult);
   }
 
   @Test
